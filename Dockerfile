@@ -152,6 +152,8 @@ RUN if [ ! $(getent group "$GF_GID") ]; then \
 COPY --from=go-src /tmp/grafana/bin/grafana* /tmp/grafana/bin/*/grafana* ./bin/
 COPY --from=js-src /tmp/grafana/public ./public
 
+RUN mkdir /var/lib/grafana/plugins/test
+
 RUN grafana-cli plugins install devopsprodigy-kubegraf-app
 
 EXPOSE 3000
